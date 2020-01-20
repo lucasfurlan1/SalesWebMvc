@@ -24,12 +24,16 @@ namespace SalesWebMvc.Services
         public async Task InsertAsync (Seller obj)
         {
             _context.Add(obj);
-            await _context.SaveChangesAsync();
+            await _context
+                .SaveChangesAsync();
         }
 
         public async Task<Seller> FindByIdAsync (int id)
         {
-            return await _context.Seller.Include(obj => obj.Department).FirstOrDefaultAsync(obj => obj.Id == id);
+            return await _context
+                .Seller
+                .Include(obj => obj.Department)
+                .FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
         public async Task RemoveAsync (int id)
